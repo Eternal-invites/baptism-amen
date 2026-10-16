@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="የአሜን የጥምቀት ግብዣ — ቦሌ መድኃኔዓለም ቤተ ክርስቲያን" />
+  <title>የአሜን ጥምቀት | የጥምቀት ግብዣ</title>
+
+  <!-- Ethiopic-script fonts (require internet on first load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Noto+Serif+Ethiopic:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="no-scroll">
+
+  <!-- ============================================================
+       Reusable SVG ornaments (Ethiopian cross, corners, divider,
+       church illustration, icons). Used via <use href="#...">
+       ============================================================ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Stylized Ethiopian cross -->
+      <symbol id="eth-cross" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="3.4"
+           stroke-linejoin="round" stroke-linecap="round">
+          <path d="M50 6 L57 13 V35 H79 L86 42 V58 L79 65 H57 V87 L50 94 L43 87 V65 H21 L14 58 V42 L21 35 H43 V13 Z"/>
+          <path d="M50 21 V79" stroke-width="2"/>
+          <path d="M22 50 H78" stroke-width="2"/>
+          <path d="M50 37 L63 50 L50 63 L37 50 Z" stroke-width="2"/>
+        </g>
+        <circle cx="50" cy="50" r="4" fill="currentColor"/>
+        <g fill="currentColor">
+          <circle cx="50" cy="12" r="2.4"/><circle cx="50" cy="88" r="2.4"/>
+          <circle cx="12" cy="50" r="2.4"/><circle cx="88" cy="50" r="2.4"/>
+        </g>
+      </symbol>
+
+      <!-- Corner flourish (designed for top-left; rotate for other corners) -->
+      <symbol id="orn-corner" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M3 27 C3 13 13 3 27 3"/>
+          <path d="M3 41 C3 20 20 3 41 3"/>
+        </g>
+        <circle cx="27" cy="3" r="2.1" fill="currentColor"/>
+        <circle cx="3" cy="27" r="2.1" fill="currentColor"/>
+        <path d="M41 3 h4 M3 41 v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </symbol>
+
+      <!-- Horizontal divider: line — small cross — line -->
+      <symbol id="orn-divider" viewBox="0 0 240 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6"
+           stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 12 H100"/>
+          <path d="M140 12 H230"/>
+          <path d="M120 3 V21"/>
+          <path d="M113 9 H127"/>
+          <path d="M115.5 15 H124.5"/>
+        </g>
+        <circle cx="106" cy="12" r="1.8" fill="currentColor"/>
+        <circle cx="134" cy="12" r="1.8" fill="currentColor"/>
+        <circle cx="120" cy="3" r="1.6" fill="currentColor"/>
+      </symbol>
+
+      <!-- Ethiopian round-church illustration -->
+      <symbol id="church" viewBox="0 0 200 170">
+        <g fill="none" stroke="currentColor" stroke-width="2.6"
+           stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 156 H186"/>
+          <path d="M58 156 V112 a42 42 0 0 1 84 0 V156"/>
+          <path d="M72 156 V118 a28 28 0 0 1 56 0 V156"/>
+          <path d="M100 70 V50"/>
+          <path d="M92 58 H108"/>
+          <path d="M94 65 H106"/>
+          <path d="M90 156 V136 a10 10 0 0 1 20 0 V156"/>
+          <path d="M34 156 V138 M29 147 H39"/>
+          <path d="M166 156 V138 M161 147 H171"/>
+        </g>
+        <circle cx="100" cy="47" r="2.5" fill="currentColor"/>
+      </symbol>
+
+      <!-- Map pin icon -->
+      <symbol id="ic-pin" viewBox="0 0 24 24">
+        <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"
+              fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      </symbol>
+
+      <!-- Music note icon -->
+      <symbol id="ic-music" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18 V5 l11 -2 v13"/>
+          <circle cx="6.5" cy="18" r="2.5"/>
+          <circle cx="17.5" cy="16" r="2.5"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
+       1) ANIMATED OPENING INVITATION CARD
+       ============================================================ -->
+  <div id="opening" class="opening" role="dialog" aria-label="የጥምቀት ግብዣ ካርድ">
+    <div class="opening-bg" aria-hidden="true">
+      <div class="opening-photo"></div>
+      <div class="light-rays"></div>
+      <div class="soft-glow"></div>
+    </div>
+    <div id="particles" class="particles" aria-hidden="true"></div>
+
+    <!-- Self-drawing ornamental frame -->
+    <svg class="opening-frame" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="of-gold" x="1.1" y="1.1" width="97.8" height="97.8" pathLength="1"
+            vector-effect="non-scaling-stroke"/>
+      <rect class="of-blue" x="2.5" y="2.5" width="95" height="95" pathLength="1"
+            vector-effect="non-scaling-stroke"/>
+    </svg>
+    <svg class="opening-corner oc-tl" aria-hidden="true"><use href="#eth-cross"/></svg>
+    <svg class="opening-corner oc-tr" aria-hidden="true"><use href="#eth-cross"/></svg>
+    <svg class="opening-corner oc-br" aria-hidden="true"><use href="#eth-cross"/></svg>
+    <svg class="opening-corner oc-bl" aria-hidden="true"><use href="#eth-cross"/></svg>
+
+    <div class="invite-scene">
+      <div class="invite-card" id="inviteCard">
+        <!-- Front cover -->
+        <div class="card-face card-front">
+          <div class="cf-inner">
+            <p class="cf-blessing anim" style="--d:.95s">በእግዚአብሔር ቸርነት</p>
+            <svg class="cf-cross anim" style="--d:1.45s" aria-hidden="true"><use href="#eth-cross"/></svg>
+            <h1 class="cf-title anim" style="--d:1.95s">የአሜን ክርስትና</h1>
+            <div class="cf-photo anim" style="--d:2.45s">
+              <img src="assets/images/amen.jpg" alt="የአሜን ፎቶ" />
+            </div>
+            <p class="cf-joy anim" style="--d:2.85s">በደስታ እንጋብዛችኋለን!</p>
+            <button id="openBtn" class="btn-open anim" style="--d:3.25s" type="button">ግብዣውን ይክፈቱ</button>
+          </div>
+        </div>
+        <!-- Back cover (seen while the card opens) -->
+        <div class="card-face card-back" aria-hidden="true">
+          <svg class="cb-cross"><use href="#eth-cross"/></svg>
+          <p class="cb-text">እግዚአብሔር ይባርካችሁ!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       2) MAIN INVITATION (revealed after the card opens)
+       ============================================================ -->
+  <main id="main" class="main main-hidden" inert>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-rays" aria-hidden="true"></div>
+      <svg class="hero-cross reveal" aria-hidden="true"><use href="#eth-cross"/></svg>
+      <p class="hero-blessing reveal">በእግዚአብሔር ቸርነት</p>
+      <h2 class="hero-title reveal">የአሜን ክርስትና</h2>
+      <svg class="orn-divider reveal" aria-hidden="true"><use href="#orn-divider"/></svg>
+      <p class="hero-sub reveal">የጥምቀት በዓል ግብዣ</p>
+      <a href="#message" class="scroll-cue reveal">
+        <span>ወደ ታች ይሸብልሉ</span>
+        <span class="cue-arrow" aria-hidden="true">▾</span>
+      </a>
+    </header>
+
+    <!-- Invitation message -->
+    <section id="message" class="section">
+      <div class="wrap">
+        <div class="panel message-panel reveal">
+          <svg class="corner c-tl" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-tr" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-br" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-bl" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <p class="message-text">
+            በአባታችን በእግዚአብሔር ፈቃድና ቸርነት፣<br /><br />
+            ውድ ቤተሰቦቻችን፣ ዘመድ አዝማዶቻችንና ወዳጆቻችን፣<br /><br />
+            የምንወደው ልጃችን አሜን በቅዱስ ጥምቀት ሥርዓት የሚባረክበትን ይህን የተባረከ ቀን ከእናንተ ጋር ለመካፈል በታላቅ ደስታ እንጋብዛችኋለን።<br /><br />
+            በዚህ የተባረከ ቀን በመገኘት ለልጃችን መልካም ምኞታችሁንና በረከታችሁን እንድታካፍሉን በፍቅር እንጋብዛችኋለን።<br /><br />
+            የእናንተ መገኘት የደስታችን ትልቅ ክፍል ነው።<br /><br />
+            <strong class="message-blessing">እግዚአብሔር ይባርካችሁ!</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <section id="countdown" class="section section-tint">
+      <div class="wrap">
+        <h3 class="section-title reveal">
+          <svg class="title-cross" aria-hidden="true"><use href="#eth-cross"/></svg>
+          <span>የቀን ቆጠራ</span>
+          <i class="band" aria-hidden="true"></i>
+        </h3>
+        <div id="cd" class="countdown reveal" aria-live="polite">
+          <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-label">ቀናት</span></div>
+          <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-label">ሰዓታት</span></div>
+          <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-label">ደቂቃዎች</span></div>
+          <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-label">ሰከንዶች</span></div>
+        </div>
+        <p id="cd-msg" class="cd-msg reveal" hidden></p>
+      </div>
+    </section>
+
+    <!-- Photo gallery -->
+    <section id="gallery" class="section">
+      <div class="wrap">
+        <figure class="main-photo reveal">
+          <div class="photo-frame">
+            <svg class="corner c-tl" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <svg class="corner c-tr" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <svg class="corner c-br" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <svg class="corner c-bl" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <img src="assets/images/amen.jpg" alt="የአሜን ፎቶ" />
+          </div>
+          <figcaption>ውድ ልጃችን አሜን</figcaption>
+        </figure>
+        <!-- ተጨማሪ ፎቶዎች ከscript.js ውስጥ CONFIG.gallery ተጨምረው እዚህ ይታያሉ -->
+        <div id="galleryGrid" class="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- Baptism ceremony -->
+    <section id="ceremony" class="section section-tint">
+      <div class="wrap">
+        <h3 class="section-title reveal">
+          <svg class="title-cross" aria-hidden="true"><use href="#eth-cross"/></svg>
+          <span>የቅዱስ ጥምቀት ሥነ ሥርዓት</span>
+          <i class="band" aria-hidden="true"></i>
+        </h3>
+        <div class="panel ceremony-panel reveal">
+          <svg class="corner c-tl" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-tr" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-br" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-bl" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <!-- የቤተ ክርስቲያኑ ፎቶ — assets/images/church.jpg (ሌላ ፎቶ ለመጠቀም ይህን ፋይል ይተኩ) -->
+          <div class="photo-frame church-frame">
+            <svg class="corner c-tl" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <svg class="corner c-tr" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <svg class="corner c-br" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <svg class="corner c-bl" aria-hidden="true"><use href="#orn-corner"/></svg>
+            <img src="assets/images/church.jpg" alt="የቦሌ መድኃኔዓለም ቤተ ክርስቲያን ፎቶ" loading="lazy" />
+          </div>
+          <dl class="detail-list">
+            <div class="detail-row"><dt>የሕፃኑ ስም</dt><dd>አሜን</dd></div>
+            <div class="detail-row"><dt>ቀን</dt><dd id="cfg-date">[የሚገባበት ቀን]</dd></div>
+            <div class="detail-row"><dt>ሰዓት</dt><dd id="cfg-ceremony-time">[የሚገባበት ሰዓት]</dd></div>
+            <div class="detail-row"><dt>ቦታ</dt><dd id="cfg-church-name">ቦሌ መድኃኔዓለም ቤተ ክርስቲያን</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Church location -->
+    <section id="location" class="section">
+      <div class="wrap">
+        <h3 class="section-title reveal">
+          <svg class="title-cross" aria-hidden="true"><use href="#eth-cross"/></svg>
+          <span>የቅዱስ ጥምቀት ቦታ</span>
+          <i class="band" aria-hidden="true"></i>
+        </h3>
+        <div class="panel location-panel reveal">
+          <svg class="panel-cross" aria-hidden="true"><use href="#eth-cross"/></svg>
+          <p class="location-name" id="cfg-church-name2">ቦሌ መድኃኔዓለም ቤተ ክርስቲያን</p>
+          <a id="churchMapBtn" class="btn btn-blue"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Bole+Medhanealem+Church+Addis+Ababa"
+             target="_blank" rel="noopener">
+            <svg class="btn-ic" aria-hidden="true"><use href="#ic-pin"/></svg>
+            የቤተ ክርስቲያኑን አቅጣጫ ይመልከቱ
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lunch invitation -->
+    <section id="lunch" class="section section-tint">
+      <div class="wrap">
+        <h3 class="section-title reveal">
+          <svg class="title-cross" aria-hidden="true"><use href="#eth-cross"/></svg>
+          <span>የቤተሰብ የምሳ ግብዣ</span>
+          <i class="band" aria-hidden="true"></i>
+        </h3>
+        <div class="panel lunch-panel reveal">
+          <svg class="corner c-tl" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-tr" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-br" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <svg class="corner c-bl" aria-hidden="true"><use href="#orn-corner"/></svg>
+          <p class="lunch-msg">
+            ከቅዱስ ጥምቀት ሥነ ሥርዓቱ በኋላ የደስታችንን ቀን በጋራ ለማሳለፍ በቤታችን ለሚዘጋጀው የምሳ ግብዣ በአክብሮት እንጋብዛችኋለን።
+          </p>
+          <dl class="detail-list">
+            <div class="detail-row"><dt>ቦታ</dt><dd>በቤታችን</dd></div>
+            <div class="detail-row"><dt>ቀን</dt><dd id="cfg-lunch-date">[የሚገባበት ቀን]</dd></div>
+            <div class="detail-row"><dt>ሰዓት</dt><dd id="cfg-lunch-time">[የሚገባበት ሰዓት]</dd></div>
+            <div class="detail-row"><dt>የቤት አድራሻ</dt><dd id="cfg-home-address">[የሚገባበት አድራሻ]</dd></div>
+          </dl>
+          <!-- ቁልፉ የቤት ካርታ ሊንክ ሲሰጥ ብቻ ይታያል (script.js: CONFIG.homeMapUrl) -->
+          <a id="homeMapBtn" class="btn btn-green" target="_blank" rel="noopener" hidden>
+            <svg class="btn-ic" aria-hidden="true"><use href="#ic-pin"/></svg>
+            የቤቱን አቅጣጫ ይመልከቱ
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <svg class="orn-divider" aria-hidden="true"><use href="#orn-divider"/></svg>
+      <svg class="footer-cross" aria-hidden="true"><use href="#eth-cross"/></svg>
+      <p class="footer-blessing">እግዚአብሔር ይባርካችሁ!</p>
+      <p class="footer-family">— የአሜን ቤተሰብ —</p>
+    </footer>
+  </main>
+
+  <!-- Optional background music (shown only if assets/audio/baptism.mp3 exists) -->
+  <button id="musicToggle" class="music-toggle" type="button" hidden aria-pressed="false">
+    <svg aria-hidden="true"><use href="#ic-music"/></svg>
+    <span id="musicLabel">ሙዚቃ ያብሩ</span>
+  </button>
+  <audio id="bgMusic" loop preload="none"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
